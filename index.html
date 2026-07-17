@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="منصة تحليل بيانات مباريات كرة القدم - تابع المباريات المباشرة والإحصائيات">
+    <meta name="keywords" content="كرة القدم, تحليل بيانات, مباريات, إحصائيات, البث المباشر">
+    <title>Football Analytics - تحليل مباريات كرة القدم</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="navbar-brand">
+                    <i class="fas fa-soccer-ball"></i>
+                    <span>Football Analytics</span>
+                </div>
+                
+                <nav class="navbar-menu">
+                    <a href="#home" class="nav-link active">الرئيسية</a>
+                    <a href="#matches" class="nav-link">المباريات</a>
+                    <a href="#standings" class="nav-link">الترتيب</a>
+                    <a href="#players" class="nav-link">اللاعبون</a>
+                    <a href="#statistics" class="nav-link">الإحصائيات</a>
+                </nav>
+                
+                <div class="navbar-right">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="ابحث عن فريق أو لاعب...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="user-menu">
+                        <button class="user-btn"><i class="fas fa-user-circle"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>تحليل بيانات مباريات كرة القدم</h1>
+                    <p>تابع أفضل المباريات والإحصائيات من جميع بطولات العالم</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="liveMatchesBtn">
+                            <i class="fas fa-circle"></i> المباريات المباشرة
+                        </button>
+                        <button class="btn btn-secondary" id="upcomingBtn">
+                            <i class="fas fa-calendar"></i> المباريات القادمة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Matches -->
+        <section class="matches-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-tv"></i> المباريات المباشرة الآن</h2>
+                    <span class="live-indicator">
+                        <span class="live-dot"></span>
+                        <span>بث مباشر</span>
+                    </span>
+                </div>
+                <div id="liveMatchesContainer" class="matches-grid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>جاري التحميل...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tournaments Section -->
+        <section class="tournaments-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-trophy"></i> البطولات</h2>
+                </div>
+                <div id="tournamentsContainer" class="tournaments-grid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>جاري التحميل...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Scorers -->
+        <section class="scorers-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-crown"></i> أفضل الهدافين</h2>
+                </div>
+                <div id="topScorersContainer" class="scorers-grid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>جاري التحميل...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Matches Section -->
+        <section id="matches" class="full-matches-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-list"></i> كل المباريات</h2>
+                </div>
+                
+                <div class="matches-filters">
+                    <select id="tournamentFilter" class="filter-select">
+                        <option value="">اختر البطولة</option>
+                    </select>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">كل الحالات</option>
+                        <option value="scheduled">قادمة</option>
+                        <option value="live">مباشرة</option>
+                        <option value="finished">انتهت</option>
+                    </select>
+                    <button id="refreshBtn" class="btn btn-small">
+                        <i class="fas fa-sync-alt"></i> تحديث
+                    </button>
+                </div>
+                
+                <div id="allMatchesContainer" class="matches-list">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>جاري التحميل...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Standings Section -->
+        <section id="standings" class="standings-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-table"></i> جدول الترتيب</h2>
+                </div>
+                
+                <div class="standings-selector">
+                    <select id="standingsTournamentFilter" class="filter-select">
+                        <option value="">اختر البطولة</option>
+                    </select>
+                </div>
+                
+                <div id="standingsContainer" class="standings-table">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>جاري التحميل...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Players Section -->
+        <section id="players" class="players-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-jersey"></i> اللاعبون</h2>
+                </div>
+                
+                <div class="players-filters">
+                    <select id="teamFilter" class="filter-select">
+                        <option value="">اختر الفريق</option>
+                    </select>
+                </div>
+                
+                <div id="playersContainer" class="players-grid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>جاري التحميل...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section id="statistics" class="statistics-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-bar"></i> الإحصائيات</h2>
+                </div>
+                
+                <div class="statistics-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>إجمالي الأهداف</h3>
+                            <p id="totalGoals" class="stat-number">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>عدد المباريات</h3>
+                            <p id="totalMatches" class="stat-number">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>عدد الفرق</h3>
+                            <p id="totalTeams" class="stat-number">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>البطولات</h3>
+                            <p id="totalTournaments" class="stat-number">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Match Detail Modal -->
+    <div id="matchModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="matchDetailContent"></div>
+        </div>
+    </div>
+
+    <!-- Search Results Modal -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content search-modal-content">
+            <span class="close">&times;</span>
+            <div id="searchResultsContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Football Analytics. جميع الحقوق محفوظة.</p>
+                <div class="footer-links">
+                    <a href="#">الخصوصية</a>
+                    <a href="#">الشروط</a>
+                    <a href="#">الاتصال</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
